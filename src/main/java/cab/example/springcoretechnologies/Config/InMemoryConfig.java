@@ -1,5 +1,4 @@
 package cab.example.springcoretechnologies.Config;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +23,13 @@ public class InMemoryConfig {
                 .password(passwordEncoder.encode("123"))
                 .roles("ADMIN", "USER")
                 .build();
-        return  new InMemoryUserDetailsManager(user,admin);
+        UserDetails customer=User.withUsername("customer")
+                .password(passwordEncoder.encode("123456"))
+                .roles("CUSTOMER")
+                .build();
+
+
+        return  new InMemoryUserDetailsManager(user,admin,customer);
 
 
     }
